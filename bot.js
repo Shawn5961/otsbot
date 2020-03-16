@@ -19,7 +19,7 @@ client.once('ready', () => {
 client.on('message', function(message) {
     console.log(message.content);
 
-    if (message.member.roles.find('name', 'Admin')){
+    if (message.member.roles.cache.some(role => role.name === 'Admin')){
         // send back "Pong." to the channel the message was sent in
         message.channel.send('is admin');
     }
