@@ -9,10 +9,8 @@ logger.add(new logger.transports.Console, {
 logger.level = 'debug';
 
 // Initialize Discord Bot
-const client = new Discord.Client({
-   token: auth.token,
-   autorun: true
-});
+const client = new Discord.Client()
+clinet.login(auth.token)
 
 client.once('ready', () => {
     console.log('Ready!');
