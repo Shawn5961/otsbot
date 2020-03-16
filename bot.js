@@ -20,7 +20,7 @@ client.once('ready', () => {
 });
 
 client.on('message', function(message) {
-    let youtubeRegex = new RegExp('(https://youtu\.).*\w+')
+    let youtubeRegex = new RegExp('(https?:\/\/[^\s]+)');
     if(message.author.bot) return;
 
     console.log(message.content);
