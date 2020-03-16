@@ -10,7 +10,7 @@ logger.level = 'debug';
 
 // Initialize Discord Bot
 const client = new Discord.Client()
-clinet.login(auth.token)
+client.login(auth.token)
 
 client.once('ready', () => {
     console.log('Ready!');
