@@ -33,7 +33,7 @@ client.on('message', function(message) {
     function consoleLog(word, index){
         console.log(word);
         if (youtubeRegex.test(word)){
-            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '\"%(title)s.%(ext)s\"'], {}, function(err, output){
+            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '%(title)s.%(ext)s'], {}, function(err, output){
                 if (err) throw err;
                 console.log(output.join(''))
             })
