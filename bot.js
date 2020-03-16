@@ -42,9 +42,7 @@ client.on('message', function(message) {
                     console.log(`stderr: ${stderr}`);
                 }
                 
-                });
-            }
-
+            });
         }
     }
 
