@@ -17,12 +17,13 @@ client.once('ready', () => {
 });
 
 client.on('message', function(message) {
+    let youtubeRegex = '(https://youtu\.)\w+'
     if(message.author.bot) return;
 
     console.log(message.content);
     let messageSplit = message.content.split(' ')
-    if(messageSplit.includes('https://')){
-        message.channel.send('is a link');
+    if(messageSplit.includes(youtubeRegex){
+        message.channel.send('that\'s youtube');
     }
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
