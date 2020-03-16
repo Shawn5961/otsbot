@@ -46,13 +46,13 @@ client.on('message', function(message) {
                 console.log('format id:', info.format_id)
             })
 
-            let link = 'http://www.meascheese.com/ots' + info.title + '.mp3';
+            //let link = 'http://www.meascheese.com/ots/' + info.title + '.mp3';
 
             youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'], {}, function(err, output){
                 if (err) throw err;
                 console.log(output.join(''))
             })
-            
+
             message.channel.send('Audio file available at: ' + link);
         }
     }
