@@ -2,8 +2,6 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
 
-const {exec} = require('child_process');
-
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -34,6 +32,7 @@ client.on('message', function(message) {
         if (youtubeRegex.test(word)){
             let youtubeLink = word;
             message.channel.send('Word # ' + index + 'is a youtube link');
+            const {exec} = require('child_process');
             exec('youtube-dl - f best -x --audio-format mp3 ' + word);
         }
     }
