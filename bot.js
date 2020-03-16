@@ -28,12 +28,9 @@ client.on('message', function(message) {
     messageSplit.forEach(consoleLog);
 
     function consoleLog(word, index){
-        console.log(index + ': ' + word);
-    }
-
-    if(youtubeRegex.test(messageSplit)){
-        message.channel.send('that\'s youtube');
-        message.channel.send(messageSplit);
+        if (youtubeRegex.test(word)){
+            message.channel.send('Word #' + index + 'is a youtube link');
+        }
     }
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
