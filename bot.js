@@ -38,7 +38,7 @@ client.on('message', function(message) {
                 console.log(output.join(''))
             })
             //const video = youtubedl(word, ['-x --audio-format mp3 -o \"%(title)s.%(ext)s\"']);
-            message.channel.send('Word # ' + index + 'is a youtube link');
+            message.channel.send('Word #' + index + ' is a youtube link');
         }
     }
 
