@@ -9,27 +9,20 @@ logger.add(new logger.transports.Console, {
 logger.level = 'debug';
 
 // Initialize Discord Bot
-const client = new Discord.Client();
+const client = new Discord.Client({
+   token: auth.token,
+   autorun: true
+});
 
 client.once('ready', () => {
     console.log('Ready!');
 });
 
-bot.on('message', function (user, userID, channelID, message, evt) {
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
-        var args = message.substring(1).split(' ');
-        var cmd = args[0];
-       
-        args = args.splice(1);
-        switch(cmd) {
-            // Check message for YouTube links
-            case 'ots':
-                const channel = <client>.channels.cache.get('<id>');
-                channel.send('test');
-            break;
-            // Just add any case commands if you want to..
-         }
-     }
+client.on('message', message => {
+    console.log(message.content);
+
+    if (message.content === '!ping') {
+        // send back "Pong." to the channel the message was sent in
+        message.channel.send('Pong.');
+    }
 });
