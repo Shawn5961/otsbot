@@ -37,7 +37,7 @@ client.on('message', function(message) {
             youtubedl.getInfo(word, function(err, info) {
                 if (err) throw err
 
-                let link = 'http://www.meascheese.com/ots/' + info.title + '.mp3';
+                let link = 'http://www.meascheese.com/ots/' + info.title.replace(' ', '_') + '.mp3';
                 message.channel.send('Audio file available at: ' + link);
             })
 
