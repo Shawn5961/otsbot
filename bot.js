@@ -33,12 +33,26 @@ client.on('message', function(message) {
     function consoleLog(word, index){
         console.log(word);
         if (youtubeRegex.test(word)){
+
+            youtubedl.getInfo(url, options, function(err, info) {
+                if (err) throw err
+
+                console.log('id:', info.id)
+                console.log('title:', info.title)
+                console.log('url:', info.url)
+                console.log('thumbnail:', info.thumbnail)
+                console.log('description:', info.description)
+                console.log('filename:', info._filename)
+                console.log('format id:', info.format_id)
+            })
+
+            let link = 'http://www.meascheese.com/ots' + info.title + '.mp3'
             youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'], {}, function(err, output){
                 if (err) throw err;
                 console.log(output.join(''))
             })
             //const video = youtubedl(word, ['-x --audio-format mp3 -o \"%(title)s.%(ext)s\"']);
-            message.channel.send('Word #' + index + ' is a youtube link');
+            message.channel.send('Audio file available at: ' + link);
         }
     }
 
