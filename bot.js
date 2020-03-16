@@ -19,8 +19,8 @@ client.once('ready', () => {
 client.on('message', function(message) {
     console.log(message.content);
 
-    if (message.content === '!ping') {
+    if (message.member.roles.get('Admin')){
         // send back "Pong." to the channel the message was sent in
-        message.channel.send('Pong.');
+        message.channel.send('is admin');
     }
 });
