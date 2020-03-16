@@ -31,7 +31,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // Check message for YouTube links
             case 'ots':
-                const channel = <bot>.channels.cache.get('<id>');
+                const channel = bot.channels.cache.get('<id>');
                 channel.send('poop');
             break;
             // Just add any case commands if you want to..
