@@ -34,7 +34,7 @@ client.on('message', function(message) {
         console.log(word);
         if (youtubeRegex.test(word)){
 
-            youtubedl.getInfo(url, options, function(err, info) {
+            youtubedl.getInfo(word, options, function(err, info) {
                 if (err) throw err
 
                 console.log('id:', info.id)
