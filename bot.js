@@ -17,9 +17,11 @@ client.once('ready', () => {
 });
 
 client.on('message', function(message) {
+    if(message.author.bot) return;
+
     console.log(message.content);
     let messageSplit = message.content.split(' ')
-    console.log(messageSplit[1]);
+    console.log(messageSplit.forEach());
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
         // send back "Pong." to the channel the message was sent in
