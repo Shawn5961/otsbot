@@ -18,7 +18,7 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-client.on('message', function(message) => {
+client.on('message', function(message) {
     console.log(message.content);
 
     if (message.content === '!ping') {
