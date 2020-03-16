@@ -24,7 +24,7 @@ client.on('message', function(message) {
     if(message.author.bot) return;
 
     console.log(message.content);
-    let messageSplit = message.content.split('/ |\n/')
+    let messageSplit = message.content.split(' ');
     console.log(youtubeRegex.test(messageSplit));
 
     console.log(messageSplit.length);
