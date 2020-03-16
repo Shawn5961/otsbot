@@ -31,6 +31,7 @@ client.on('message', function(message) {
     messageSplit.forEach(consoleLog);
 
     function consoleLog(word, index){
+        console.log(word);
         if (youtubeRegex.test(word)){
             const youtubeLink = youtubedl(word, ['-x --audio-format mp3 -o "%(title)s.%(ext)s']);
             message.channel.send('Word # ' + index + 'is a youtube link');
