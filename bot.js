@@ -32,7 +32,7 @@ client.on('message', function(message) {
 
     function consoleLog(word, index){
         if (youtubeRegex.test(word)){
-            const youtubeLink = youtubedl(word, ['-x --audio-format mp3 -o "%(title)s.%(ext)s'];
+            const youtubeLink = youtubedl(word, ['-x --audio-format mp3 -o "%(title)s.%(ext)s']);
             message.channel.send('Word # ' + index + 'is a youtube link');
         }
     }
