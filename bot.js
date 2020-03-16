@@ -33,9 +33,7 @@ client.on('message', function(message) {
     function consoleLog(word, index){
         console.log(word);
         if (youtubeRegex.test(word)){
-            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '\"%(title)s.%(ext)s\"'], {}, function(err, output){
-                console.log(output.join('\n'))
-            })
+            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '\"%(title)s.%(ext)s\"']);
             //const video = youtubedl(word, ['-x --audio-format mp3 -o \"%(title)s.%(ext)s\"']);
             message.channel.send('Word # ' + index + 'is a youtube link');
 
