@@ -32,8 +32,19 @@ client.on('message', function(message) {
         if (youtubeRegex.test(word)){
             let youtubeLink = word;
             message.channel.send('Word # ' + index + 'is a youtube link');
+
             const {exec} = require('child_process');
-            exec('youtube-dl - f best -x --audio-format mp3 ' + word);
+            exec('youtube-dl - f best -x --audio-format mp3 ' + word, (err, stdout, stderr) => {
+                if (err){
+                    console.error(err);
+                } else {
+                    console.log(`stdout: ${stdout}`);
+                    console.log(`stderr: ${stderr}`);
+                }
+                
+                });
+            }
+
         }
     }
 
