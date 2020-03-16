@@ -25,7 +25,9 @@ client.on('message', function(message) {
     console.log(youtubeRegex.test(messageSplit));
 
     console.log(messageSplit.length);
-    if(youtubeRegex.test(messageSplit)){
+
+
+    if(youtubeRegex.test(messageSplit.forEach())){
         message.channel.send('that\'s youtube');
         message.channel.send(messageSplit);
     }
