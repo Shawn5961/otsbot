@@ -18,8 +18,7 @@ client.once('ready', () => {
 
 client.on('message', function(message) {
     console.log(message.content);
-    let messageString = message.substr( message.indexOf(' ') +1);
-    let messageArr = messageString.split(' ');
+    let messageArr = message.substring(1).split(' ');
     console.log(messageArr[2]);
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
