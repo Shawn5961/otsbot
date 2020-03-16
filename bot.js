@@ -34,10 +34,19 @@ client.on('message', function(message) {
         console.log(word);
         if (youtubeRegex.test(word)){
             youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '\"%(title)s.%(ext)s\"'], {}, function(err, output){
+                if (err) throw err;
                 console.log(output.join('\n'))
             })
             //const video = youtubedl(word, ['-x --audio-format mp3 -o \"%(title)s.%(ext)s\"']);
             message.channel.send('Word # ' + index + 'is a youtube link');
+
+            video.on('info', function(info) {
+                console.log('Download started')
+                console.log('filename: ' + info._filename)
+                console.log('size: ' + info.size)
+            })
+
+            video.pipe(fs.createWriteStream('myvideo.mp3'))
         }
     }
 
