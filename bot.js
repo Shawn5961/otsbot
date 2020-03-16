@@ -53,7 +53,7 @@ client.on('message', function(message) {
                 console.log(output.join(''))
             })
 
-            message.channel.send('Audio file available at: ' + link);
+            //message.channel.send('Audio file available at: ' + link);
         }
     }
 
