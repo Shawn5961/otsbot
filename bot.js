@@ -18,7 +18,7 @@ client.once('ready', () => {
 
 client.on('message', function(message) {
     console.log(message.content);
-    let messageString = message.substr( msg.indexOf(' ') +1);
+    let messageString = message.substr( message.indexOf(' ') +1);
     let messageArr = messageString.split(' ');
     console.log(messageArr[2]);
 
