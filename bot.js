@@ -34,8 +34,6 @@ client.on('message', function(message) {
         console.log(word);
         if (youtubeRegex.test(word)){
 
-            youtubedl.getInfo(word, function(err, info))
-
             let link = 'http://www.meascheese.com/ots' + youtubedl.getInfo(word, function(err, info)).info.title + '.mp3';
 
             youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'], {}, function(err, output){
