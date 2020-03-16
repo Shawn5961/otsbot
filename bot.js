@@ -21,7 +21,9 @@ client.on('message', function(message) {
 
     console.log(message.content);
     let messageSplit = message.content.split(' ')
-    messageSplit.forEach(element => console.log(element));
+    if(messageSplit.includes('https://')){
+        message.channel.send('is a link');
+    }
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
         // send back "Pong." to the channel the message was sent in
