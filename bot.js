@@ -18,6 +18,9 @@ client.once('ready', () => {
 
 client.on('message', function(message) {
     console.log(message.content);
+    let messageString = message.substr( msg.indexOf(' ') +1);
+    let messageArr = messageString.split(' ');
+    console.log(messageArr[2]);
 
     if (message.member.roles.cache.some(role => role.name === 'Admin')){
         // send back "Pong." to the channel the message was sent in
