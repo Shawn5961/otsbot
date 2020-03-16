@@ -19,9 +19,12 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
     console.log(message.content);
 
-    if (message.content === '!ping') {
+    if (command === '!ping') {
         // send back "Pong." to the channel the message was sent in
         message.channel.send('Pong.');
     }
