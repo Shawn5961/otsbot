@@ -52,7 +52,7 @@ client.on('message', function(message) {
                     filename = filename.replace(/#/g, 'sharp');
 
                     let urlname = info.title.replace(/ /g, '_');
-                    urlname = info.title.replace(/#/g, 'sharp');
+                    urlname = urlname.replace(/#/g, 'sharp');
 
                     //Set variable for URL to filename
                     let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
