@@ -29,7 +29,8 @@ client.on('message', function(message) {
     //Check if user has 'One Take Saturday' role
     if (message.member.roles.cache.some(role => role.name === 'One Take Saturday')){
         if(message.content.includes('@everyone')){
-        
+            
+            console.log('contains everyone');
             //console.log(message.content);
             let messageSplit = message.content.split(new RegExp(' |\n'));
             //console.log(youtubeRegex.test(messageSplit));
