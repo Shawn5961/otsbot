@@ -37,13 +37,13 @@ client.on('message', function(message) {
             youtubedl.getInfo(word, function(err, info) {
                 if (err) throw err
 
-                let link = 'http://www.meascheese.com/ots/' + info.title.replace(/ /g, '_') + '.mp3';
+                let link = 'http://www.meascheese.com/ots/' + info.title.replace(/ /g, '%20') + '.mp3';
                 message.channel.send('Audio file available at: ' + link);
             })
 
 
 
-            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
+            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'], {}, function(err, output){
                 if (err) throw err;
                 console.log(output.join(''))
             })
