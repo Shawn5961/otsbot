@@ -27,7 +27,7 @@ client.on('message', function(message) {
     if(message.author.bot) return;
 
     //Check if user has 'One Take Saturday' role
-    if (message.member.roles.cache.some(role => role.name === 'One Take Saturday')){
+    if (mention.startsWith('@everyone')){
         
         //console.log(message.content);
         let messageSplit = message.content.split(new RegExp(' |\n'));
