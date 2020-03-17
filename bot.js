@@ -39,7 +39,7 @@ client.on('message', function(message) {
 
                 let link = 'http://www.meascheese.com/ots/' + info.title.replace(/ /g, '_') + '.mp3';
 
-                youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '') +'.%(ext)s'.replace(/ /g, '')], {}, function(err, output){
+                youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
                     if (err) throw err;
                     console.log(output.join(''))
                 })
