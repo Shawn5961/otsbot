@@ -37,7 +37,9 @@ client.on('message', function(message) {
             youtubedl.getInfo(word, function(err, info) {
                 if (err) throw err
 
-                let link = 'http://www.meascheese.com/ots/' + info.title.replace(/ /g, '_') + '.mp3';
+                let filename = info.title.replace(/ /g, '_');
+                filename = filename.title.replace(/#/g, '%23');
+                let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
 
                 youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '_') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
                     if (err) throw err;
@@ -55,3 +57,6 @@ client.on('message', function(message) {
         message.channel.send('is admin');
     }
 });
+
+Smooth_Reggae_R&B_Backing_Track_in_C#_Minor.mp3
+Smooth_Reggae_R&B_Backing_Track_in_C#_Minor.mp3
