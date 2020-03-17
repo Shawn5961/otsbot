@@ -19,41 +19,52 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
+//Set Regex to find link
+let youtubeRegex = new RegExp('(https?:\/\/[^\s]+)');
+
 client.on('message', function(message) {
-    let youtubeRegex = new RegExp('(https?:\/\/[^\s]+)');
+    //Ignore bot messages
     if(message.author.bot) return;
 
-    console.log(message.content);
-    let messageSplit = message.content.split(new RegExp(' |\n'));
-    console.log(youtubeRegex.test(messageSplit));
+    //Check if user has 'One Take Saturday' role
+    if (message.member.roles.cache.some(role => role.name === 'One Take Saturday')){
+        
+        //console.log(message.content);
+        let messageSplit = message.content.split(new RegExp(' |\n'));
+        //console.log(youtubeRegex.test(messageSplit));
+        //console.log(messageSplit.length);
 
-    console.log(messageSplit.length);
-    messageSplit.forEach(consoleLog);
+        //Iterate through words in message
+        messageSplit.forEach(parseMessage);
 
-    function consoleLog(word, index){
-        console.log(word);
-        if (youtubeRegex.test(word)){
+        //Pass word at index
+        function parseMessage(url, index){
+            //Check if YouTube Regex is true
+            if (youtubeRegex.test(url)){
 
-            youtubedl.getInfo(word, function(err, info) {
-                if (err) throw err
+                //Get info on video
+                youtubedl.getInfo(url, function(err, info) {
+                    if (err) throw err
 
-                let filename = info.title.replace(/ /g, '_');
-                filename = filename.replace(/#/g, '%23');
-                let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
+                    //Sanitize filename
+                    //Replace whitespace with _, replace # with %23 to allow proper URL encoding
+                    let filename = info.title.replace(/ /g, '_');
+                    filename = filename.replace(/#/g, '%23');
 
-                youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '_') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
-                    if (err) throw err;
-                    console.log(output.join(''))
+                    //Set variable for URL to filename
+                    let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
+
+                    //Execute youtube-dl on specified URL
+                    //Extracts audio as mp3, sets output destination as video title (sanitized)
+                    youtubedl.exec(url, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '_') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
+                        if (err) throw err;
+                        console.log(output.join(''))
+                    })
+
+                    //Post links to channel
+                    message.channel.send('Audio file available at: ' + link);
                 })
-
-                message.channel.send('Audio file available at: ' + link);
-            })
-
+            }
         }
-    }
-
-    if (message.member.roles.cache.some(role => role.name === 'Admin')){
-        // send back "Pong." to the channel the message was sent in
-        message.channel.send('is admin');
     }
 });
