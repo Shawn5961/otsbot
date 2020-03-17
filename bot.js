@@ -57,6 +57,3 @@ client.on('message', function(message) {
         message.channel.send('is admin');
     }
 });
-
-Smooth_Reggae_R&B_Backing_Track_in_C#_Minor.mp3
-Smooth_Reggae_R&B_Backing_Track_in_C#_Minor.mp3
