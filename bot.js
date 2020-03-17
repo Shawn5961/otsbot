@@ -43,7 +43,7 @@ client.on('message', function(message) {
 
 
 
-            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'], {}, function(err, output){
+            youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/%(title)s.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
                 if (err) throw err;
                 console.log(output.join(''))
             })
