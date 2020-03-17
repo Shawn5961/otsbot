@@ -38,7 +38,7 @@ client.on('message', function(message) {
                 if (err) throw err
 
                 let filename = info.title.replace(/ /g, '_');
-                filename = filename.title.replace(/#/g, '%23');
+                filename = filename.replace(/#/g, '%23');
                 let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
 
                 youtubedl.exec(word, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '_') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
