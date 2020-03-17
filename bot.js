@@ -46,17 +46,20 @@ client.on('message', function(message) {
                 youtubedl.getInfo(url, function(err, info) {
                     if (err) throw err
 
-                    //Sanitize filename
-                    //Replace whitespace with _, replace # with %23 to allow proper URL encoding
+                    //Sanitize filename and URL
+                    //Replace whitespace with '_', replace # with 'sharp' to allow proper URL encoding
                     let filename = info.title.replace(/ /g, '_');
-                    filename = filename.replace(/#/g, '%23');
+                    filename = filename.replace(/#/g, 'sharp');
+
+                    let urlname = info.title.replace(/ /g, '_');
+                    urlname = info.title.replace(/#/g, 'sharp');
 
                     //Set variable for URL to filename
                     let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
 
                     //Execute youtube-dl on specified URL
                     //Extracts audio as mp3, sets output destination as video title (sanitized)
-                    youtubedl.exec(url, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ info.title.replace(/ /g, '_') +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
+                    youtubedl.exec(url, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ urlname +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
                         if (err) throw err;
                         console.log(output.join(''))
                     })
