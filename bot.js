@@ -27,46 +27,48 @@ client.on('message', function(message) {
     if(message.author.bot) return;
 
     //Check if user has 'One Take Saturday' role
-    if (mention.startsWith('@everyone')){
+    if (message.member.roles.cache.some(role => role.name === 'One Take Saturday')){
+        if(message.content.includes('@everyone')){
         
-        //console.log(message.content);
-        let messageSplit = message.content.split(new RegExp(' |\n'));
-        //console.log(youtubeRegex.test(messageSplit));
-        //console.log(messageSplit.length);
+            //console.log(message.content);
+            let messageSplit = message.content.split(new RegExp(' |\n'));
+            //console.log(youtubeRegex.test(messageSplit));
+            //console.log(messageSplit.length);
 
-        //Iterate through words in message
-        messageSplit.forEach(parseMessage);
+            //Iterate through words in message
+            messageSplit.forEach(parseMessage);
 
-        //Pass word at index
-        function parseMessage(url, index){
-            //Check if YouTube Regex is true
-            if (youtubeRegex.test(url)){
+            //Pass word at index
+            function parseMessage(url, index){
+                //Check if YouTube Regex is true
+                if (youtubeRegex.test(url)){
 
-                //Get info on video
-                youtubedl.getInfo(url, function(err, info) {
-                    if (err) throw err
+                    //Get info on video
+                    youtubedl.getInfo(url, function(err, info) {
+                        if (err) throw err
 
-                    //Sanitize filename and URL
-                    //Replace whitespace with '_', replace # with 'sharp' to allow proper URL encoding
-                    let filename = info.title.replace(/ /g, '_');
-                    filename = filename.replace(/#/g, 'sharp');
+                        //Sanitize filename and URL
+                        //Replace whitespace with '_', replace # with 'sharp' to allow proper URL encoding
+                        let filename = info.title.replace(/ /g, '_');
+                        filename = filename.replace(/#/g, 'sharp');
 
-                    let urlname = info.title.replace(/ /g, '_');
-                    urlname = urlname.replace(/#/g, 'sharp');
+                        let urlname = info.title.replace(/ /g, '_');
+                        urlname = replace(/#/g, 'sharp');
 
-                    //Set variable for URL to filename
-                    let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
+                        //Set variable for URL to filename
+                        let link = 'http://www.meascheese.com/ots/' + filename + '.mp3';
 
-                    //Execute youtube-dl on specified URL
-                    //Extracts audio as mp3, sets output destination as video title (sanitized)
-                    youtubedl.exec(url, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ urlname +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
-                        if (err) throw err;
-                        console.log(output.join(''))
+                        //Execute youtube-dl on specified URL
+                        //Extracts audio as mp3, sets output destination as video title (sanitized)
+                        youtubedl.exec(url, ['-x', '--audio-format', 'mp3', '-o', '/var/www/meascheese.com/shawn/public_html/ots/'+ urlname +'.%(ext)s'.replace(/ /g, '_')], {}, function(err, output){
+                            if (err) throw err;
+                            console.log(output.join(''))
+                        })
+
+                        //Post links to channel
+                        message.channel.send('Audio file available at: ' + link);
                     })
-
-                    //Post links to channel
-                    message.channel.send('Audio file available at: ' + link);
-                })
+                }
             }
         }
     }
