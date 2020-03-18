@@ -22,6 +22,7 @@ client.once('ready', () => {
 //Set Regex to find link
 let youtubeRegex = new RegExp('(https?:\/\/[^\s]+)');
 
+//Main bot function
 client.on('message', function(message) {
     //Ignore bot messages
     if(message.author.bot) return;
