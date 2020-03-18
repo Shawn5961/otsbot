@@ -29,6 +29,9 @@ client.on('message', function(message) {
 
     //Check if user has 'One Take Saturday' role
     if (message.member.roles.cache.some(role => role.name === 'One Take Saturday')){
+        if(message.content.includes('!otstest')){
+            console.log('yup I\'m in here');
+        }
         if(message.content.includes('@everyone')){
             
             console.log('contains everyone');
